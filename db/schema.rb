@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822142830) do
+ActiveRecord::Schema.define(version: 20150822143424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 20150822142830) do
 
   add_index "shows", ["event_id"], name: "index_shows_on_event_id", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "discount",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "show_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "subscription_id"
+  end
+
+  add_index "tickets", ["show_id"], name: "index_tickets_on_show_id", using: :btree
+  add_index "tickets", ["subscription_id"], name: "index_tickets_on_subscription_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",            null: false
     t.string   "crypted_password"
@@ -47,4 +67,7 @@ ActiveRecord::Schema.define(version: 20150822142830) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "shows", "events"
+  add_foreign_key "subscriptions", "users"
+  add_foreign_key "tickets", "shows"
+  add_foreign_key "tickets", "subscriptions"
 end
