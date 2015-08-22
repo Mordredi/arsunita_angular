@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :subscriptions
+
   before_create :determine_age
 
   def determine_age
