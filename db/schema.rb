@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822172148) do
+ActiveRecord::Schema.define(version: 20150822192135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,15 +64,15 @@ ActiveRecord::Schema.define(version: 20150822172148) do
   add_index "tickets", ["subscription_id"], name: "index_tickets_on_subscription_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
+    t.string   "email",                            null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "arts_worker"
-    t.boolean  "student"
+    t.boolean  "arts_worker",      default: false
+    t.boolean  "student",          default: false
     t.datetime "birthday"
     t.integer  "age"
   end
