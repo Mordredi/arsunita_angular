@@ -9,7 +9,7 @@ class Ticket < ActiveRecord::Base
   def calculate_ticket_price
     full_price = event.price_in_cents
     discount = full_price * (subscription.discount.to_f / 100)
-    self.ticket_price_in_cents = (full_price - discount) * 1.13
+    self.ticket_price_in_cents = (full_price - discount)
   end
 
   def check_capacity
