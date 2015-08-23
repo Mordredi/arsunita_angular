@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Venue, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should concat the city address" do
+    venue = create(:venue)
+    expect(venue.full_address).to eq "125 Bathurst St, Toronto, Ontario, Canada"
+  end
 end
