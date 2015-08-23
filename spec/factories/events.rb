@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :event do
-    name "MyString"
-description "MyText"
-start_date "2015-08-21 20:35:18"
-end_date ""
+    name "Musical"
+    description "Best Musical Ever"
+    start_date "2015-08-21"
+    end_date "2015-08-25"
+    price_in_cents 1000
   end
 
 end

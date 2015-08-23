@@ -1,5 +1,6 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
+  has_many :tickets
 
   before_create :initial_discount, :set_year
 
