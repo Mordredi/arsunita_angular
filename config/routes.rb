@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
 
+  # match "/*path" => redirect("/?goto=%{path}"), :via => :all
+
+
+  root 'main#index'
+
   namespace :api, :defaults => {:format => :json } do
     resources :venues
   end
+
+  match "*path", :to => "main#index", :via => :all
+  # get '/\*path' => redirect('/?goto=%{path}')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

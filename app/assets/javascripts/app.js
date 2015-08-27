@@ -1,0 +1,1 @@
+angular.module('ArsUnita', ['ngRoute', 'templates']);
